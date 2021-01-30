@@ -48,42 +48,47 @@
                     <input class="inp-style" type="date" name="">
                 </div>
             </div>
+            <!-- First Class Input section Start --------------->
             <div class="input-group f-class">
-                <!-- First Class Input section --------------->
                 <div>
                     <label for="">First Class ($150)</label>
-                    <input id="firstClassInput" class="inp-style inp-width" type="number" value="1">
-                    <input type="text" id="firstClassTotalDisplay" value="$150 Only">
+                    <input id="firstClassInput" class="inp-style inp-width" type="number" value="0">
+                    <input type="text" id="firstClassTotalDisplay" value="000">
                 </div>
                 <div class="plus-minus-btn">
                     <p>
-                        <button><span id="firstClassIncrease">( + )</span></button> 
-                        <button><span id="firstClassDecrease">( - )</span></button>
+                        <button onclick="firstClassIncreaseDecrease(true)">( + )</button>
+                        <button onclick="firstClassIncreaseDecrease(false)">( - )</button>
                     </p>
                 </div>
-                <!-- First Class Input section ------------------>
             </div>
+            <!-- First Class Input section End ------------------>
             
+            <!----- Economy Input section Start ------------------>
             <div class="input-group f-class">
+                
                 <div>
                     <label for="">Economy ($100)</label>
-                    <input id="economyInput"  class="inp-style inp-width" type="number" value="1" >
-                    <input type="text" id="economyTotalDisplay" value="$100 Only">
+                    <input id="economyInput"  class="inp-style inp-width" type="number" value="0" >
+                    <input type="text" id="economyTotalDisplay" value="000">
                 </div>
                 <div class="plus-minus-btn">
                     <p>
-                        <button><span id="economyIncrease">( + )</span></button>
-                        <button><span id="economyDecrease">( - )</span></button>
+                        <button onclick="economyIncreaseDecrease(true)">( + )</button>
+                        <button onclick="economyIncreaseDecrease(false)">( - )</button>
                     </p>
                 </div>
             </div>
+            <!----- Economy Input section End ------------------>
+
+            <!----- Calculation section Start ------------------>
             <div class="calculations">
                 <div class="amount">
                     <div class="left">
                         <p>Subtotal</p>
                     </div>
-                    <div class="right">
-                        <p>$000</p>
+                    <div class="right" >
+                        <p id="subTotal">$000</p>
                     </div>
                 </div>
 
@@ -92,7 +97,7 @@
                         <p>Charge 10% VAT</p>
                     </div>
                     <div class="right">
-                        <p>$00</p>
+                        <p id="vatAmount">$00</p>
                     </div>
                 </div>
                 <hr>
@@ -101,12 +106,13 @@
                         <h4>Total</h4>
                     </div>
                     <div class="right">
-                        <p>$000</p>
+                        <p id="totalAmount">$000</p>
                     </div>
                 </div>
             </div>
             <button class="btn-style">Book Now</button>
         </div>
+        <!----- Calculation section End ------------------>
 
         <div class="booking-content">
             <h1>discover <br> around the world</h1>
@@ -119,15 +125,6 @@
 
     <script>
         // ----- First Class ------------ //
-        document.getElementById("firstClassIncrease").addEventListener("click", function () {
-            firstClassIncreaseDecrease(true);
-                
-            });
-        document.getElementById("firstClassDecrease").addEventListener("click", function () {
-                firstClassIncreaseDecrease(false);
-            });
-
-
             function firstClassIncreaseDecrease(increase){
                 const firstClassInput = document.getElementById("firstClassInput");
                 const firstClassCount = parseInt(firstClassInput.value);
@@ -140,20 +137,15 @@
                 }
                 firstClassInput.value = firstClassCountNew;
                 firstClassTotal = firstClassCountNew * 150;
-                document.getElementById("firstClassTotalDisplay").value = "$" + firstClassTotal + " " + "Only";
+                document.getElementById("firstClassTotalDisplay").value = firstClassTotal;
+
+                totalAmount();
             }
         // ----- First Class ------------ //
         
+
+
         // ----- Economy     ------------//
-         document.getElementById("economyIncrease").addEventListener("click", function () {
-                economyIncreaseDecrease(true);
-
-            });
-            document.getElementById("economyDecrease").addEventListener("click", function () {
-                economyIncreaseDecrease(false);
-            });
-
-
             function economyIncreaseDecrease(increase) {
                 const economyInput = document.getElementById("economyInput");
                 const economyCount = parseInt(economyInput.value);
@@ -166,10 +158,29 @@
                 }
                 economyInput.value = economyCountNew;
                 economyTotal = economyCountNew * 100;
-                document.getElementById("economyTotalDisplay").value = "$" + economyTotal + " " + "Only";
+                document.getElementById("economyTotalDisplay").value = economyTotal;
+                totalAmount();
             }   
 
         // ----- Economy     ------------//
+
+        function totalAmount (){
+            document.getElementById("subTotal").innerText = parseInt( document.getElementById("firstClassTotalDisplay").value)  + parseInt(document.getElementById("economyTotalDisplay").value) ;
+
+            const vat = document.getElementById("subTotal").innerText * 0.1;
+            document.getElementById("vatAmount").innerText = vat;
+
+            const total =parseInt(document.getElementById("subTotal").innerText)  + parseInt(document.getElementById("vatAmount").innerText) ;
+
+            document.getElementById("totalAmount").innerText = total;
+
+
+
+            
+        }
+        
+
+
 
     </script>
 </body>
