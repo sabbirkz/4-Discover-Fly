@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flight Booking</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:wght@400;500;700&display=swap"
+        rel="stylesheet">
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!--Header and Menu Section-->
+    <header class="container">
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Contact</a></li>
+                <li><a class="active" href="#">Sign Up</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!--Booking Section-->
+    <main class="main-content container">
+        <div class="booking-form">
+            <h3>Booking Flights</h3>
+            <div class="input-group">
+                <label for="">Flying From</label>
+                <input class="inp-style" type="text" name="" placeholder="Dhaka, Bangladesh">
+            </div>
+            <div class="input-group">
+                <label for="">Flying To</label>
+                <input class="inp-style" type="text" name="" placeholder="New York, United States">
+            </div>
+            <div class="inputs">
+                <div class="input-group">
+                    <label" for="">Departure</label>
+                    <input class="inp-style" type="date" name="">
+                </div>
+                <div class="input-group">
+                    <label for="">Return</label>
+                    <input class="inp-style" type="date" name="">
+                </div>
+            </div>
+            <div class="input-group f-class">
+                <!-- First Class Input section --------------->
+                <div>
+                    <label for="">First Class ($150)</label>
+                    <input id="firstClassInput" class="inp-style inp-width" type="number" value="1">
+                    <input type="text" id="firstClassTotalDisplay" value="$150 Only">
+                </div>
+                <div class="plus-minus-btn">
+                    <p>
+                        <button><span id="firstClassIncrease">( + )</span></button> 
+                        <button><span id="firstClassDecrease">( - )</span></button>
+                    </p>
+                </div>
+                <!-- First Class Input section ------------------>
+            </div>
+            
+            <div class="input-group f-class">
+                <div>
+                    <label for="">Economy ($100)</label>
+                    <input id="economyInput"  class="inp-style inp-width" type="number" value="1" >
+                    <input type="text" id="economyTotalDisplay" value="$100 Only">
+                </div>
+                <div class="plus-minus-btn">
+                    <p>
+                        <button><span id="economyIncrease">( + )</span></button>
+                        <button><span id="economyDecrease">( - )</span></button>
+                    </p>
+                </div>
+            </div>
+            <div class="calculations">
+                <div class="amount">
+                    <div class="left">
+                        <p>Subtotal</p>
+                    </div>
+                    <div class="right">
+                        <p>$000</p>
+                    </div>
+                </div>
+
+                <div class="amount">
+                    <div class="left">
+                        <p>Charge 10% VAT</p>
+                    </div>
+                    <div class="right">
+                        <p>$00</p>
+                    </div>
+                </div>
+                <hr>
+                <div class="amount">
+                    <div class="left">
+                        <h4>Total</h4>
+                    </div>
+                    <div class="right">
+                        <p>$000</p>
+                    </div>
+                </div>
+            </div>
+            <button class="btn-style">Book Now</button>
+        </div>
+
+        <div class="booking-content">
+            <h1>discover <br> around the world</h1>
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Doloremque, deserunt quam id iusto hic magni voluptas corporis totam ex in ipsa quia quos itaque corrupti! </p>
+        </div>
+    </section>
+    <!--Thank You-->
+
+
+
+    <script>
+        // ----- First Class ------------ //
+        document.getElementById("firstClassIncrease").addEventListener("click", function () {
+            firstClassIncreaseDecrease(true);
+                
+            });
+        document.getElementById("firstClassDecrease").addEventListener("click", function () {
+                firstClassIncreaseDecrease(false);
+            });
+
+
+            function firstClassIncreaseDecrease(increase){
+                const firstClassInput = document.getElementById("firstClassInput");
+                const firstClassCount = parseInt(firstClassInput.value);
+                let firstClassCountNew = 0;
+                if(increase == true){
+                    firstClassCountNew = firstClassCount + 1;
+                }
+                if(increase == false){
+                    firstClassCountNew = firstClassCount - 1;
+                }
+                firstClassInput.value = firstClassCountNew;
+                firstClassTotal = firstClassCountNew * 150;
+                document.getElementById("firstClassTotalDisplay").value = "$" + firstClassTotal + " " + "Only";
+            }
+        // ----- First Class ------------ //
+        
+        // ----- Economy     ------------//
+         document.getElementById("economyIncrease").addEventListener("click", function () {
+                economyIncreaseDecrease(true);
+
+            });
+            document.getElementById("economyDecrease").addEventListener("click", function () {
+                economyIncreaseDecrease(false);
+            });
+
+
+            function economyIncreaseDecrease(increase) {
+                const economyInput = document.getElementById("economyInput");
+                const economyCount = parseInt(economyInput.value);
+                let economyCountNew = 0;
+                if (increase == true) {
+                    economyCountNew = economyCount + 1;
+                }
+                if (increase == false) {
+                    economyCountNew = economyCount - 1;
+                }
+                economyInput.value = economyCountNew;
+                economyTotal = economyCountNew * 100;
+                document.getElementById("economyTotalDisplay").value = "$" + economyTotal + " " + "Only";
+            }   
+
+        // ----- Economy     ------------//
+
+    </script>
+</body>
+
+</html>
