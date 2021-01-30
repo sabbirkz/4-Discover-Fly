@@ -110,7 +110,7 @@
                     </div>
                 </div>
             </div>
-            <button class="btn-style">Book Now</button>
+            <button class="btn-style" onClick="alert('Congratulation! Your Seat Confirm.')">Book Now</button>
         </div>
         <!----- Calculation section End ------------------>
 
@@ -164,6 +164,7 @@
 
         // ----- Economy     ------------//
 
+
         function totalAmount (){
             document.getElementById("subTotal").innerText = parseInt( document.getElementById("firstClassTotalDisplay").value)  + parseInt(document.getElementById("economyTotalDisplay").value) ;
 
@@ -172,10 +173,7 @@
 
             const total =parseInt(document.getElementById("subTotal").innerText)  + parseInt(document.getElementById("vatAmount").innerText) ;
 
-            document.getElementById("totalAmount").innerText = total;
-
-
-
+            document.getElementById("totalAmount").innerText = "$" + total;
             
         }
         
